@@ -2341,7 +2341,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <p>Plot the training and validation accuracy at each epoch, do you see evidence of overfitting?</p>
 <hr>
 <p>The relevant code begins from chunk 49 of the ISLP notebook:</p>
-<div id="670a5b11" class="cell" data-execution_count="2">
+<div id="dc4d611e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(cifar_train, </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cifar_test)<span class="op">=</span> [CIFAR100(root<span class="op">=</span><span class="st">&quot;data&quot;</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                         train<span class="op">=</span>train,</span>
@@ -2352,12 +2352,12 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <div id="card" class="card text-white bg-secondary mb-3">
 <p>This notebook encountered an SSL error while being processed on a docker instance of RStudio. To work around this, the CIFAR100 data was downloaded locally, so the <code>download</code> argument was set to <code>False</code>.</p>
 </div>
-<div id="a7e946f4" class="cell" data-execution_count="3">
+<div id="c1a6268f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- setting seed for reproducibility--</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">646</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">646</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d3e6ccf8" class="cell" data-execution_count="4">
+<div id="55ecb8f8" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--Rescaling to pixel values in load--</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plain_transform<span class="op">=</span> transforms.Compose([transforms.ToTensor()])</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2371,7 +2371,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <section id="test-split" class="level4">
 <h4 class="anchored" data-anchor-id="test-split">Test Split</h4>
 <p>We’ll hold out 20% for each of the 50 epochs using PyTorch manually.</p>
-<div id="82733aa0" class="cell" data-execution_count="5">
+<div id="5fdac63d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>n_total<span class="op">=</span> <span class="bu">len</span>(cifar_train)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n_train<span class="op">=</span> <span class="bu">int</span>(<span class="fl">0.8</span> <span class="op">*</span> n_total)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n_valid<span class="op">=</span> n_total <span class="op">-</span> n_train</span>
@@ -2393,13 +2393,13 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <section id="data-loaders" class="level4">
 <h4 class="anchored" data-anchor-id="data-loaders">Data Loaders</h4>
 <p>Next we’ll create the data loaders. The vignette uses <code>SimpleDataModule()</code> from the ISLP package, but we’ll do the same manually.</p>
-<div id="63291670" class="cell" data-execution_count="6">
+<div id="3963ce90" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>train_loader<span class="op">=</span> DataLoader(train_data, batch_size<span class="op">=</span> <span class="dv">128</span>, shuffle<span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>valid_loader<span class="op">=</span> DataLoader(valid_data, batch_size<span class="op">=</span> <span class="dv">128</span>, shuffle<span class="op">=</span> <span class="va">False</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>test_loader<span class="op">=</span> DataLoader(cifar_test, batch_size<span class="op">=</span> <span class="dv">128</span>, shuffle<span class="op">=</span> <span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We’ll test to make sure the <code>DataLoader()</code> worked:</p>
-<div id="72e9c135" class="cell" data-execution_count="8">
+<div id="620a13cd" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> X_batch, y_batch <span class="kw">in</span> train_loader:</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;X:&quot;</span>, X_batch.shape)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;y:&quot;</span>, y_batch.shape)</span>
@@ -2410,7 +2410,7 @@ y: torch.Size([128])</code></pre>
 </div>
 </div>
 <p>Like the vignette, we’ll look at some of the training images:</p>
-<div id="bfea3eed" class="cell" data-execution_count="9">
+<div id="987d08f2" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">6</span>):</span>
@@ -2435,7 +2435,7 @@ y: torch.Size([128])</code></pre>
 <section id="define-cnn" class="level4">
 <h4 class="anchored" data-anchor-id="define-cnn">Define CNN</h4>
 <p>Next we define a module and a manual training loop to mirror the trainer from PyTorch Lightning used in the vignette.</p>
-<div id="a0ca096a" class="cell" data-execution_count="10">
+<div id="9f2940df" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- CNN building block (vignette chunk 54)--</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> BuildingBlock(nn.Module):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2462,7 +2462,7 @@ y: torch.Size([128])</code></pre>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="2da18c50" class="cell" data-execution_count="11">
+<div id="46be39c7" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- Baseline CNN--</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CIFARModel(nn.Module):</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2501,10 +2501,10 @@ y: torch.Size([128])</code></pre>
 <figcaption>Screenshot of ISLP chunk</figcaption>
 </figure>
 </div>
-<div id="45629157" class="cell" data-execution_count="12">
+<div id="8c8558ef" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>device<span class="op">=</span> <span class="st">&quot;cpu&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="9447a80e" class="cell" data-execution_count="13">
+<div id="59753983" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>m1<span class="op">=</span> CIFARModel().to(device)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#-- test--</span></span>
@@ -2517,7 +2517,7 @@ y: torch.Size([128])</code></pre>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we’ll move on to the training by creating one loop to handle all the things that should happen. The loop should train the CNN model with 50 epochs, evaluate it after each epoch, and keep track of the performances.</p>
-<div id="1a98f775" class="cell" data-execution_count="14">
+<div id="5e67ce81" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- Loss to determine &quot;wrongness&quot;--</span></span>
@@ -2621,7 +2621,7 @@ y: torch.Size([128])</code></pre>
 </section>
 <section id="training-and-validation-accuracy-plot-baseline-cnn" class="level4">
 <h4 class="anchored" data-anchor-id="training-and-validation-accuracy-plot-baseline-cnn">Training and Validation Accuracy Plot: Baseline CNN</h4>
-<div id="27e5a00a" class="cell" data-execution_count="15">
+<div id="e0b6bc4a" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- plot-- </span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.plot(history1[<span class="st">&quot;epoch&quot;</span>], history1[<span class="st">&quot;train_accuracy&quot;</span>], label<span class="op">=</span><span class="st">&quot;Training accuracy&quot;</span>)</span>
@@ -2641,7 +2641,7 @@ y: torch.Size([128])</code></pre>
 </figure>
 </div>
 <p>There’s a large gap between training accuracy (blue) and validation accuracy (orange). The baseline CNN <code>m1</code> seems to be overfitting. The validation accuracy scores begin to level out just before the 10th epoch so everything else te model learns isn’t generalized enough for the id of new images, but the model continues to learn the training dataset which goes on to be an almost perfect learning curve.</p>
-<div id="7abd2200" class="cell" data-execution_count="16">
+<div id="25d83bc1" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- accuracy for baseline model--</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>m1.<span class="bu">eval</span>()</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2662,7 +2662,7 @@ y: torch.Size([128])</code></pre>
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>acc<span class="op">=</span> accuracy_score(test_true, test_pred)</span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>err<span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> acc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d0974832" class="cell" data-execution_count="17">
+<div id="f457b9ea" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot; The best validation accuracy score was </span><span class="sc">{</span>top_accuracy<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot; The best epoch for the baseline model was </span><span class="sc">{</span>top_epoch<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2679,7 +2679,7 @@ y: torch.Size([128])</code></pre>
 <section id="b-top-10" class="level3">
 <h3 class="anchored" data-anchor-id="b-top-10">(b) Top 10</h3>
 <p>For each class within CIFAR100, find the accuracy of the model on the validation set for members of that class. Report the 10 classes with the highest accuracy and the 10 classes with the lowest accuracy, alongside the accuracy for each of the identified classes.</p>
-<div id="29ed40cc" class="cell" data-execution_count="18">
+<div id="4557fd7a" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Extracting Top 10</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>m1.<span class="bu">eval</span>()</span>
@@ -2709,7 +2709,7 @@ y: torch.Size([128])</code></pre>
 <span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>val_results<span class="op">=</span> pd.DataFrame(val_rows)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="c48b3a8f" class="cell" data-execution_count="19">
+<div id="e1dcd608" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>class_accuracy<span class="op">=</span> (val_results.groupby(<span class="st">&quot;class_name&quot;</span>).agg(validation_accuracy<span class="op">=</span>(<span class="st">&quot;correct&quot;</span>, <span class="st">&quot;mean&quot;</span>), n<span class="op">=</span>(<span class="st">&quot;correct&quot;</span>, <span class="st">&quot;size&quot;</span>)).reset_index())</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>top_10<span class="op">=</span> class_accuracy.sort_values(<span class="st">&quot;validation_accuracy&quot;</span>, ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">10</span>)</span>
@@ -2718,7 +2718,7 @@ y: torch.Size([128])</code></pre>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(top_10)</span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bottom_10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="a13601fb" class="cell" data-execution_count="20">
+<div id="fac956a3" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -2805,7 +2805,7 @@ y: torch.Size([128])</code></pre>
 <section id="c-misclassifications" class="level3">
 <h3 class="anchored" data-anchor-id="c-misclassifications">(c) Misclassifications</h3>
 <p>Identify 5 samples from the validation set that are misclassified. Plot those images along with the correct class label and the incorrect prediction. Comment on the misclassified images- in which cases does the incorrect prediction make sense to you?</p>
-<div id="99d3c3a5" class="cell" data-execution_count="21">
+<div id="177e6e10" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>m1.<span class="bu">eval</span>()</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>wrong_images<span class="op">=</span> []</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>actual<span class="op">=</span> []</span>
@@ -2829,7 +2829,7 @@ y: torch.Size([128])</code></pre>
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(wrong_images) <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
 <span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="95582916" class="cell" data-execution_count="22">
+<div id="1b14d835" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
@@ -2875,14 +2875,14 @@ Important
 <p>Note: 100 epochs were used instead of 300 due to machine limitations</p>
 </div>
 </div>
-<div id="629f2feb" class="cell" data-execution_count="23">
+<div id="808b7f17" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- RGB channel values (from normalize arguments)--</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>cifar100_mean<span class="op">=</span> (<span class="fl">0.5071</span>, <span class="fl">0.4865</span>, <span class="fl">0.4409</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>cifar100_std<span class="op">=</span> (<span class="fl">0.2673</span>, <span class="fl">0.2564</span>, <span class="fl">0.2762</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="augmentation-and-normalization" class="level4">
 <h4 class="anchored" data-anchor-id="augmentation-and-normalization">Augmentation (and normalization)</h4>
-<div id="d1c88bd4" class="cell" data-execution_count="24">
+<div id="b26196b7" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- For training--</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>train_trans_aug<span class="op">=</span> transforms.Compose([</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  transforms.RandomHorizontalFlip(),</span>
@@ -2900,7 +2900,7 @@ Important
 </section>
 <section id="train-prep" class="level4">
 <h4 class="anchored" data-anchor-id="train-prep">Train Prep</h4>
-<div id="c5fd711e" class="cell" data-execution_count="25">
+<div id="56b65f78" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- training data with augmentation--</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>cifar_train_aug<span class="op">=</span> CIFAR100(root<span class="op">=</span><span class="st">&quot;data&quot;</span>, train<span class="op">=</span><span class="va">True</span>, download<span class="op">=</span><span class="va">False</span>, transform<span class="op">=</span>train_trans_aug)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2935,7 +2935,7 @@ Important
 <h4 class="anchored" data-anchor-id="train-augmented-cnn">Train: Augmented CNN</h4>
 <section id="training-loop" class="level5">
 <h5 class="anchored" data-anchor-id="training-loop">Training Loop</h5>
-<div id="640cc25a" class="cell" data-execution_count="26">
+<div id="26c53a5a" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- training augmented model--</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    m2.train()</span>
@@ -3015,7 +3015,7 @@ Important
 </section>
 <section id="scores-for-augmented-cnn-normalization" class="level4">
 <h4 class="anchored" data-anchor-id="scores-for-augmented-cnn-normalization">Scores for Augmented CNN (+ Normalization)</h4>
-<div id="630aeb86" class="cell" data-execution_count="27">
+<div id="688f9b5e" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>m2.<span class="bu">eval</span>()</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>test_true<span class="op">=</span> []</span>
@@ -3035,7 +3035,7 @@ Important
 <span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>acc2<span class="op">=</span> accuracy_score(test_true, test_pred)</span>
 <span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>err2<span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> acc2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d6e32e2c" class="cell" data-execution_count="28">
+<div id="85461077" class="cell" data-execution_count="28">
 <div class="cell-output cell-output-stdout">
 <pre><code> The test error score for the augmented model is 0.502 compared to the baseline model 0.565
 
@@ -3047,7 +3047,7 @@ Important
 </section>
 <section id="training-and-validation-error-plot-augmented-cnn" class="level4">
 <h4 class="anchored" data-anchor-id="training-and-validation-error-plot-augmented-cnn">Training and Validation Error Plot: Augmented CNN</h4>
-<div id="88964110" class="cell" data-execution_count="29">
+<div id="40e4b527" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>plt.plot(history2[<span class="st">&quot;epoch&quot;</span>], history2[<span class="st">&quot;train_error&quot;</span>], label<span class="op">=</span><span class="st">&quot;Training error&quot;</span>)</span>
@@ -3077,7 +3077,7 @@ Important
 <p>You may want to experiment with the learning rate, solver (for example Adam), weight decay, or other hyperparameters.</p>
 <section id="model-prep" class="level3">
 <h3 class="anchored" data-anchor-id="model-prep">Model Prep</h3>
-<div id="53842b25" class="cell" data-execution_count="30">
+<div id="ea7f8a2a" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- Wider CNN--</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CIFARModelWide(nn.Module):</span>
@@ -3108,7 +3108,7 @@ Important
 </div>
 <section id="train-widened-cnn" class="level4">
 <h4 class="anchored" data-anchor-id="train-widened-cnn">Train: Widened CNN</h4>
-<div id="92be7344" class="cell" data-execution_count="31">
+<div id="da1e19a8" class="cell" data-execution_count="31">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>m3<span class="op">=</span> CIFARModelWide().to(device)</span>
@@ -3200,7 +3200,7 @@ Important
 </section>
 <section id="training-and-validation-error-plot-widened-cnn" class="level4">
 <h4 class="anchored" data-anchor-id="training-and-validation-error-plot-widened-cnn">Training and Validation Error Plot: Widened CNN</h4>
-<div id="7bac8eb3" class="cell" data-execution_count="32">
+<div id="befe1abd" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.plot(history3[<span class="st">&quot;epoch&quot;</span>], history3[<span class="st">&quot;train_error&quot;</span>], label<span class="op">=</span><span class="st">&quot;Training error&quot;</span>)</span>
@@ -3223,7 +3223,7 @@ Important
 </section>
 <section id="scores-for-widened-cnn" class="level4">
 <h4 class="anchored" data-anchor-id="scores-for-widened-cnn">Scores for Widened CNN</h4>
-<div id="8f7c9fdc" class="cell" data-execution_count="33">
+<div id="ecd9ae30" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>m3.<span class="bu">eval</span>()</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>test_true<span class="op">=</span> []</span>
@@ -3243,7 +3243,7 @@ Important
 <span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>acc3<span class="op">=</span> accuracy_score(test_true, test_pred)</span>
 <span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>err3<span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> acc3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="0708d4be" class="cell" data-execution_count="34">
+<div id="9e7d51fe" class="cell" data-execution_count="34">
 <div class="cell-output cell-output-stdout">
 <pre><code> The test error score for the Widened CNN model is 0.431 compared to the Augmented model&#39;s 0.502
 
@@ -3261,7 +3261,7 @@ Important
 <section id="a-1" class="level3">
 <h3 class="anchored" data-anchor-id="a-1">(a)</h3>
 <p>CNNs can be made deeper by stacking multiple convolutional layers directly together before each max-pooling layer. Attempt to increase the accuracy even further by increasing the number of convolutional layers in each building block, putting 2, 3, or 4 convolutional layers before each max-pooling layer (in theory you could put more but you will become limited by the lack of training data, lack of available compute budget). Train this network. What do you observe about the training and testing accuracy? You will likely need to go to a smaller batch size to make this model fit in the GPU memory. For an A100 I recommend 512 batch size, but you can experiment to make it work for your GPU and code setup. Note that batch size and learning rate should have an inverse relationship.</p>
-<div id="6ac27047" class="cell" data-execution_count="35">
+<div id="efaac560" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- deep --</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DeepBlock(nn.Module):</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3281,7 +3281,7 @@ Important
 <span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="251a84e0" class="cell" data-execution_count="36">
+<div id="95a19210" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- deeper CNN--</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CIFARModelDeep(nn.Module):</span>
@@ -3312,7 +3312,7 @@ Important
 </div>
 <section id="train-deep-cnn" class="level4">
 <h4 class="anchored" data-anchor-id="train-deep-cnn">Train: Deep CNN</h4>
-<div id="36a74758" class="cell" data-execution_count="37">
+<div id="a3174902" class="cell" data-execution_count="37">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>m4<span class="op">=</span> CIFARModelDeep().to(device)</span>
@@ -3404,7 +3404,7 @@ Important
 </section>
 <section id="training-and-validation-error-plot-deep-cnn" class="level4">
 <h4 class="anchored" data-anchor-id="training-and-validation-error-plot-deep-cnn">Training and Validation Error Plot: Deep CNN</h4>
-<div id="a0497482" class="cell" data-execution_count="38">
+<div id="8ea82472" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>plt.plot(history4[<span class="st">&quot;epoch&quot;</span>], history4[<span class="st">&quot;train_error&quot;</span>], label<span class="op">=</span><span class="st">&quot;Training error&quot;</span>)</span>
@@ -3426,7 +3426,7 @@ Important
 </section>
 <section id="scores-for-deep-cnn" class="level4">
 <h4 class="anchored" data-anchor-id="scores-for-deep-cnn">Scores for Deep CNN</h4>
-<div id="1103395e" class="cell" data-execution_count="40">
+<div id="d585477a" class="cell" data-execution_count="40">
 <div class="cell-output cell-output-stdout">
 <pre><code> The test error score for the Deep CNN model is 0.436 compared to the Widened CNN model&#39;s 0.431
 
@@ -3443,7 +3443,7 @@ Important
 <p>It is likely that the model you ran in part (a) failed to learn. This is due to the dead-neuron/vanishing gradient problem, where paths through multiple layers in the network saturate to 0. This problem arises with many activation functions, and while it is somewhat mitigated by the <code>ReLU</code> design, it can occur that for some neurons the typical “input” from prior layers is negative enough to make that <code>ReLU</code> always evaluate to 0. The dead neuron problem is exacerbated the deeper the network is. One solution to it is to to normalize the activations being fed to each ‘ReLU’ layer during training. The way this works is for each batch, a <code>nn.BatchNorm1d</code> or <code>nn.BatchNorm2d</code> layer will normalize the inputs coming into it so they have 0 mean and unit variance for the given training batch. Add <code>nn.BatchNorm1d</code> and <code>nn.BatchNorm2d</code> to your neural network as appropriate before each ‘ReLU’ layer. Train the network.</p>
 <p>You may need to experiment with learning rate and weight decay. Increase weight decay (or add additional dropout) if there is a big discrepancy between test and train accuracy.</p>
 <p>See if you can improve upon your best model result on the validation set. You are constrained in this exercise by how much compute you have and time, so do not be concerned if you are not able to make the deeper network work better than the earlier networks, but it is possible for the deeper network to do quite well.</p>
-<div id="8e928a8d" class="cell" data-execution_count="41">
+<div id="bd740750" class="cell" data-execution_count="41">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- deeper block with batch normalization--</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DeepBlockBN(nn.Module):</span>
@@ -3468,7 +3468,7 @@ Important
 </div>
 <section id="train-deep-cnn-with-batch-norm" class="level4">
 <h4 class="anchored" data-anchor-id="train-deep-cnn-with-batch-norm">Train: Deep CNN with Batch Norm</h4>
-<div id="047f9362" class="cell" data-execution_count="42">
+<div id="027c801c" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- deeper CNN with batch normalization--</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CIFARModelDeepBN(nn.Module):</span>
@@ -3498,7 +3498,7 @@ Important
 <span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="82215b4b" class="cell" data-execution_count="43">
+<div id="8b6eacf6" class="cell" data-execution_count="43">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>m5<span class="op">=</span> CIFARModelDeepBN().to(device)</span>
@@ -3590,7 +3590,7 @@ Important
 </section>
 <section id="training-and-validation-error-plot-deep-cnn-w-batch-norm" class="level4">
 <h4 class="anchored" data-anchor-id="training-and-validation-error-plot-deep-cnn-w-batch-norm">Training and Validation Error Plot: Deep CNN w/ Batch Norm</h4>
-<div id="19c477d1" class="cell" data-execution_count="44">
+<div id="cad147e0" class="cell" data-execution_count="44">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>plt.plot(history5[<span class="st">&quot;epoch&quot;</span>], history5[<span class="st">&quot;train_error&quot;</span>], label<span class="op">=</span><span class="st">&quot;Training error&quot;</span>)</span>
@@ -3612,7 +3612,7 @@ Important
 </section>
 <section id="scores-for-deep-cnn-w-batch-norm" class="level4">
 <h4 class="anchored" data-anchor-id="scores-for-deep-cnn-w-batch-norm">Scores for Deep CNN w/ Batch Norm</h4>
-<div id="d8339b39" class="cell" data-execution_count="45">
+<div id="6aa6f71f" class="cell" data-execution_count="45">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>m5.<span class="bu">eval</span>()</span>
@@ -3635,7 +3635,7 @@ Important
 <span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>err5<span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> acc5</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="97eb3340" class="cell" data-execution_count="46">
+<div id="f6515b12" class="cell" data-execution_count="46">
 <div class="cell-output cell-output-stdout">
 <pre><code>The test error score for the Deep CNN with Batch Norm is 0.326 compared to the Deep CNN model&#39;s 0.436
 
@@ -3650,7 +3650,7 @@ The test accuracy score for the Deep CNN with Batch Norm is 0.674 compared to th
 <section id="c" class="level3">
 <h3 class="anchored" data-anchor-id="c">(c)</h3>
 <p>Report the test set results for each network in a table.</p>
-<div id="0ab0207a" class="cell" data-execution_count="47">
+<div id="bf7179f7" class="cell" data-execution_count="47">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>final_results<span class="op">=</span> pd.DataFrame({<span class="st">&quot;model&quot;</span>: [<span class="st">&quot;Baseline CNN&quot;</span>, <span class="st">&quot;Augmented CNN&quot;</span>, <span class="st">&quot;Wider CNN&quot;</span>,</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Deeper CNN&quot;</span>, <span class="st">&quot;Deeper CNN with Batch Norm&quot;</span>],</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;best_validation_accuracy&quot;</span>: [top_accuracy, top_accuracy2, top_accuracy3, top_accuracy4,top_accuracy5],</span>
@@ -3670,7 +3670,7 @@ The test accuracy score for the Deep CNN with Batch Norm is 0.674 compared to th
 <hr>
 <section id="saving-the-assets" class="level4">
 <h4 class="anchored" data-anchor-id="saving-the-assets">Saving the assets</h4>
-<div id="67d8d37d" class="cell" data-execution_count="48">
+<div id="ccbf73fc" class="cell" data-execution_count="48">
 <details class="code-fold">
 <summary>saving chunk results before rendering to avoid another 3 day long render process</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#--training histories--</span></span>
