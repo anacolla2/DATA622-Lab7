@@ -7,11 +7,11 @@ format:
     code-overflow: wrap
     code-block-bg: true
     highlight-style: flatly
-pdf:
-include-in-header: preamble.tex
-text: |
-  \usepackage{pdfpages}
-embed-resources: true
+    pdf:
+    include-in-header: preamble.tex
+    text: |
+      \usepackage{pdfpages}
+    embed-resources: true
 toc: true
 toc-depth: 6
 toc-location: right
