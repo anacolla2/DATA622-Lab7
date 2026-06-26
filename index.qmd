@@ -7,11 +7,12 @@ format:
     code-overflow: wrap
     code-block-bg: true
     highlight-style: flatly
+    
     pdf:
     include-in-header: preamble.tex
     text: |
       \usepackage{pdfpages}
-    embed-resources: true
+embed-resources: true
 toc: true
 toc-depth: 6
 toc-location: right
@@ -91,8 +92,8 @@ np.random.seed(646)
 plain_transform= transforms.Compose([transforms.ToTensor()])
 
 #-- Load Data-- 
-cifar_train= CIFAR100(root="data", train=True, download=False, transform=plain_transform)
-cifar_test= CIFAR100(root="data", train=False, download=False, transform=plain_transform)
+cifar_train= CIFAR100(root="data", train=True, download=True, transform=plain_transform)
+cifar_test= CIFAR100(root="data", train=False, download=True, transform=plain_transform)
 
 #--we'll definitely need this--
 class_names= cifar_train.classes
