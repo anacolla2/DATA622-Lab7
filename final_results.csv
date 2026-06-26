@@ -1,0 +1,6 @@
+model,best_validation_accuracy,best_epoch,test_accuracy,test_error
+Baseline CNN,0.4345,33,0.4355,0.5645
+Augmented CNN,0.5074,88,0.4985,0.5015000000000001
+Wider CNN,0.5717,88,0.5694,0.4306
+Deeper CNN,0.5753,93,0.5635,0.4365
+Deeper CNN with Batch Norm,0.6811,93,0.6743,0.3257
